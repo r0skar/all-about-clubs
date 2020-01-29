@@ -1,15 +1,16 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import { BrowserRouter as RouterProvider } from 'react-router-dom'
 import { App } from './App'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
-  <Fragment>
+  <RouterProvider>
     <CssBaseline />
     <App />
-  </Fragment>,
-  document.getElementById('root'),
+  </RouterProvider>,
+  document.getElementById('root')
 )
 
 // If you want your app to work offline and load faster, you can change
