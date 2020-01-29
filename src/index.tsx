@@ -1,15 +1,27 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { BrowserRouter as RouterProvider } from 'react-router-dom'
 import { App } from './App'
 import * as serviceWorker from './serviceWorker'
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#01C13B',
+      contrastText: '#ffffff'
+    }
+  }
+})
+
 ReactDOM.render(
-  <RouterProvider>
-    <CssBaseline />
-    <App />
-  </RouterProvider>,
+  <ThemeProvider theme={theme}>
+    <RouterProvider>
+      <CssBaseline />
+      <App />
+    </RouterProvider>
+  </ThemeProvider>,
   document.getElementById('root')
 )
 
