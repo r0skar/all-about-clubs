@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useContext } from 'react'
+import React, { createContext, useReducer, useContext, useEffect } from 'react'
 import { Club } from './types'
 
 export enum SortOrder {
@@ -43,12 +43,28 @@ const Reducer = (state: State, action: Action) => {
     case 'setStatus':
       return { ...state, status: action.status }
     case 'setSortOrder':
-      return { ...state, order: action.order }
+      return { ...state, sortOrder: action.order }
   }
 }
 
 export const StoreProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState)
+
+  useEffect(() => {
+    let sortedClubs!: Club[]
+
+    switch (state.sortOrder) {
+      case SortOrder.VALUE:
+        sortedClubs = state.content.sort((a, b) => (a.value === b.value ? 0 : a.value < b.value ? 1 : -1))
+        break
+      case SortOrder.NAME:
+      default:
+        sortedClubs = state.content.sort((a, b) => (a.name === b.name ? 0 : a.name > b.name ? 1 : -1))
+    }
+
+    dispatch({ type: 'setContent', content: sortedClubs })
+  }, [state.sortOrder, state.content, dispatch])
+
   return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
 }
 
