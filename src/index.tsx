@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { BrowserRouter as RouterProvider } from 'react-router-dom'
+import { StoreProvider } from './store'
 import { App } from './App'
 import * as serviceWorker from './serviceWorker'
 
@@ -17,10 +18,12 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <RouterProvider>
-      <CssBaseline />
-      <App />
-    </RouterProvider>
+    <StoreProvider>
+      <RouterProvider>
+        <CssBaseline />
+        <App />
+      </RouterProvider>
+    </StoreProvider>
   </ThemeProvider>,
   document.getElementById('root')
 )
