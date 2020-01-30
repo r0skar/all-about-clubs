@@ -1,5 +1,4 @@
-import React, { createContext, useReducer, useContext, useEffect } from 'react'
-import { SORT_ORDER_CACHE_KEY } from './constants'
+import React, { createContext, useReducer, useContext } from 'react'
 import { Club } from './types'
 
 export enum SortOrder {
@@ -27,19 +26,33 @@ type Action =
 const initialState: State = {
   content: [],
   status: Status.FETCHING,
-  sortOrder: (window.localStorage.getItem(SORT_ORDER_CACHE_KEY) as SortOrder) || SortOrder.NAME
+  sortOrder: SortOrder.NAME
 }
 
 const Context = createContext({} as { state: State; dispatch: React.Dispatch<Action> })
 
 const Reducer = (state: State, action: Action) => {
   switch (action.type) {
-    case 'setContent':
-      return { ...state, content: action.content }
     case 'setStatus':
       return { ...state, status: action.status }
+    case 'setContent':
+      return { ...state, content: action.content }
     case 'setSortOrder':
-      return { ...state, sortOrder: action.order }
+      switch (action.order) {
+        case SortOrder.VALUE:
+          return {
+            ...state,
+            sortOrder: action.order,
+            content: [...state.content].sort((a, b) => (a.value === b.value ? 0 : a.value < b.value ? 1 : -1))
+          }
+        case SortOrder.NAME:
+        default:
+          return {
+            ...state,
+            sortOrder: action.order,
+            content: [...state.content].sort((a, b) => (a.name === b.name ? 0 : a.name > b.name ? 1 : -1))
+          }
+      }
     default:
       throw new Error('Unknown action type.')
   }
@@ -47,26 +60,6 @@ const Reducer = (state: State, action: Action) => {
 
 export const StoreProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState)
-
-  useEffect(() => {
-    window.localStorage.setItem(SORT_ORDER_CACHE_KEY, state.sortOrder)
-  }, [state.sortOrder])
-
-  useEffect(() => {
-    let sortedClubs!: Club[]
-
-    switch (state.sortOrder) {
-      case SortOrder.VALUE:
-        sortedClubs = state.content.sort((a, b) => (a.value === b.value ? 0 : a.value < b.value ? 1 : -1))
-        break
-      case SortOrder.NAME:
-      default:
-        sortedClubs = state.content.sort((a, b) => (a.name === b.name ? 0 : a.name > b.name ? 1 : -1))
-    }
-
-    dispatch({ type: 'setContent', content: sortedClubs })
-  }, [state.sortOrder, state.content, dispatch])
-
   return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
 }
 
