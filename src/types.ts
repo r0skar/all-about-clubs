@@ -1,5 +1,5 @@
 export interface RouteParams {
-  clubId: string
+  clubIndex: string
 }
 
 export interface Club {
