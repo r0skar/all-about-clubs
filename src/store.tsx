@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react'
+import { SORT_ORDER_CACHE_KEY } from './constants'
 import { Club } from './types'
 
 export enum SortOrder {
@@ -26,7 +27,7 @@ type Action =
 const initialState: State = {
   content: [],
   status: Status.FETCHING,
-  sortOrder: SortOrder.NAME
+  sortOrder: (window.localStorage.getItem(SORT_ORDER_CACHE_KEY) as SortOrder) || SortOrder.NAME
 }
 
 const Context = createContext({} as { state: State; dispatch: React.Dispatch<Action> })
@@ -39,11 +40,17 @@ const Reducer = (state: State, action: Action) => {
       return { ...state, status: action.status }
     case 'setSortOrder':
       return { ...state, sortOrder: action.order }
+    default:
+      throw new Error('Unknown action type.')
   }
 }
 
 export const StoreProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState)
+
+  useEffect(() => {
+    window.localStorage.setItem(SORT_ORDER_CACHE_KEY, state.sortOrder)
+  }, [state.sortOrder])
 
   useEffect(() => {
     let sortedClubs!: Club[]
