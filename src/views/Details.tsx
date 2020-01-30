@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
   heroImage: {
     display: 'block',
     margin: '0 auto',
+    maxWidth: '300px',
     width: '30%'
   },
   contentContainer: {
