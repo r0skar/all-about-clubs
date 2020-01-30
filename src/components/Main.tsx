@@ -3,11 +3,14 @@ import { Switch, Route } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { Home } from '../views/Home'
 import { Details } from '../views/Details'
+import { NotFound } from '../views/NotFound'
 
 const useStyles = makeStyles(theme => ({
   main: {
-    paddingTop: theme.spacing(7),
     minHeight: '100vh'
+  },
+  appHeaderOffset: {
+    ...theme.mixins.toolbar
   }
 }))
 
@@ -16,9 +19,11 @@ export const Main: React.FC = () => {
 
   return (
     <main className={styles.main}>
+      <div className={styles.appHeaderOffset} />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/detailsview/:clubId" component={Details} />
+        <Route component={NotFound} />
       </Switch>
     </main>
   )
