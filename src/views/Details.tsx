@@ -41,12 +41,14 @@ export const Details: React.FC = () => {
         </Typography>
       </Container>
       <Container className={styles.contentContainer} maxWidth={false}>
-        <Typography variant="body2">
+        <Typography variant="body2" gutterBottom>
           <Trans i18nKey="CLUB_DETAILS.part1" values={club}>
             Der Club <strong>{club.name}</strong> aus {club.country} hat einen Wert von {club.value} Millionen Euro.
-          </Trans>{' '}
+          </Trans>
+        </Typography>
+        <Typography variant="body2">
           <Trans i18nKey="CLUB_DETAILS.part2" values={club}>
-            {club.name} konnte bislang {club.european_titles} Siege auf europäischer Ebene erreichen.
+            <strong>{club.name}</strong> konnte bislang {club.european_titles} Siege auf europäischer Ebene erreichen.
           </Trans>
         </Typography>
       </Container>

@@ -10,7 +10,7 @@ i18n.use(initReactI18next).init({
         MILL_EURO: 'Millionen Euro',
         CLUB_DETAILS: {
           part1: 'Der Club <strong>{{name}}</strong> aus {{country}} hat einen Wert von {{value}} Millionen Euro.',
-          part2: '{{name}} konnte bislang {{european_titles}} Siege auf europäischer Ebene erreichen.'
+          part2: '<strong>{{name}}</strong> konnte bislang {{european_titles}} Siege auf europäischer Ebene erreichen.'
         }
       }
     }
