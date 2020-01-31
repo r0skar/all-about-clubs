@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react'
+import React, { Fragment } from 'react'
 import Container from '@material-ui/core/Container'
 import grey from '@material-ui/core/colors/grey'
 import Typography from '@material-ui/core/Typography'
@@ -29,7 +29,7 @@ export const Details: React.FC = () => {
   const styles = useStyles()
   const { state } = useStore()
   const { clubIndex } = useParams<RouteParams>()
-  const club = useMemo(() => state.content[Number(clubIndex)], [state.content, clubIndex])
+  const club = state.content[Number(clubIndex)]
 
   return (
     <Fragment>

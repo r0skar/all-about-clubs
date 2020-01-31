@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react'
+import React, { Fragment } from 'react'
 import { matchPath, useLocation, useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
   const { push: navigateTo } = useHistory()
   const match = matchPath<RouteParams>(pathname, { path: DETAILS_ROUTE })
   const { clubIndex = 0 } = match?.params || {}
-  const club = useMemo(() => state.content[Number(clubIndex)], [state.content, clubIndex])
+  const club = state.content[Number(clubIndex)]
 
   const toggleSorting = () => {
     return state.sortOrder === SortOrder.NAME
