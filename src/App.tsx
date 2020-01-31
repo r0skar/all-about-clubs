@@ -48,7 +48,7 @@ export const App: React.FC = () => {
         const response = await fetch(API_ENDPOINT)
         const content = await response.json()
         dispatch({ type: 'setContent', content })
-        dispatch({ type: 'setSortOrder', order: cachedSortOrder || SortOrder.NAME })
+        dispatch({ type: 'setSortOrder', order: cachedSortOrder || SortOrder.NAME_ASC })
         dispatch({ type: 'setStatus', status: Status.FETCHED })
       } catch (e) {
         console.error(e)

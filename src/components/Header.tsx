@@ -20,9 +20,9 @@ export const Header: React.FC = () => {
   const club = state.content[Number(clubIndex)]
 
   const toggleSorting = () => {
-    return state.sortOrder === SortOrder.NAME
-      ? dispatch({ type: 'setSortOrder', order: SortOrder.VALUE })
-      : dispatch({ type: 'setSortOrder', order: SortOrder.NAME })
+    return state.sortOrder === SortOrder.NAME_ASC
+      ? dispatch({ type: 'setSortOrder', order: SortOrder.VALUE_DESC })
+      : dispatch({ type: 'setSortOrder', order: SortOrder.NAME_ASC })
   }
 
   return (

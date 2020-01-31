@@ -2,8 +2,8 @@ import React, { createContext, useReducer, useContext } from 'react'
 import { Club } from './types'
 
 export enum SortOrder {
-  NAME = 'name',
-  VALUE = 'value'
+  NAME_ASC = 'name',
+  VALUE_DESC = 'value'
 }
 
 export enum Status {
@@ -26,7 +26,7 @@ type Action =
 const initialState: State = {
   content: [],
   status: Status.FETCHING,
-  sortOrder: SortOrder.NAME
+  sortOrder: SortOrder.NAME_ASC
 }
 
 const Context = createContext({} as { state: State; dispatch: React.Dispatch<Action> })
@@ -39,13 +39,13 @@ const Reducer = (state: State, action: Action) => {
       return { ...state, content: action.content }
     case 'setSortOrder':
       switch (action.order) {
-        case SortOrder.VALUE:
+        case SortOrder.VALUE_DESC:
           return {
             ...state,
             sortOrder: action.order,
             content: [...state.content].sort((a, b) => (a.value === b.value ? 0 : a.value < b.value ? 1 : -1))
           }
-        case SortOrder.NAME:
+        case SortOrder.NAME_ASC:
         default:
           return {
             ...state,
