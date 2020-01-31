@@ -7,6 +7,8 @@ import { StoreProvider } from './store'
 import { App } from './App'
 import * as serviceWorker from './serviceWorker'
 
+import './i18n'
+
 const theme = createMuiTheme({
   palette: {
     primary: {

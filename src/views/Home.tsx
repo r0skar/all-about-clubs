@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -18,6 +19,7 @@ const useStyles = makeStyles(() => ({
 
 export const Home: React.FC = () => {
   const styles = useStyles()
+  const { t } = useTranslation()
   const { state } = useStore()
   const { push: navigateTo } = useHistory()
 
@@ -36,7 +38,7 @@ export const Home: React.FC = () => {
                   {club.country}
                 </Typography>{' '}
                 <Typography variant="body2" display="inline" color="textSecondary">
-                  {club.value} Millionen Euro
+                  {club.value} {t('MILL_EURO')}
                 </Typography>
               </TableCell>
             </TableRow>

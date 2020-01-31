@@ -3,6 +3,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import Typography from '@material-ui/core/Typography'
 import ErrorIcon from '@material-ui/icons/Error'
 import { makeStyles } from '@material-ui/core/styles'
+import { useTranslation } from 'react-i18next'
 import { useStore, Status, SortOrder } from './store'
 import { API_ENDPOINT, SORT_ORDER_CACHE_KEY } from './constants'
 import { Main } from './components/Main'
@@ -37,6 +38,7 @@ const useStyles = makeStyles(() => ({
 export const App: React.FC = () => {
   const styles = useStyles()
   const { state, dispatch } = useStore()
+  const { t } = useTranslation()
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -75,7 +77,7 @@ export const App: React.FC = () => {
           <ErrorIcon fontSize="large" color="error" />
           <br />
           <Typography variant="body2" color="error">
-            Failed to fetch data.
+            {t('NO_DATA')}
           </Typography>
         </div>
       )

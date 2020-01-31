@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Container from '@material-ui/core/Container'
 import grey from '@material-ui/core/colors/grey'
 import Typography from '@material-ui/core/Typography'
+import { Trans } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { useStore } from '../store'
@@ -41,8 +42,12 @@ export const Details: React.FC = () => {
       </Container>
       <Container className={styles.contentContainer} maxWidth={false}>
         <Typography variant="body2">
-          Der Club <strong>{club.name}</strong> aus {club.country} hat einen Wert von {club.value} Millionen Euro.{' '}
-          {club.name} konnte bislang {club.european_titles} Siege auf europäischer Ebene erreichen.
+          <Trans i18nKey="CLUB_DETAILS.part1" values={club}>
+            Der Club <strong>{club.name}</strong> aus {club.country} hat einen Wert von {club.value} Millionen Euro.
+          </Trans>{' '}
+          <Trans i18nKey="CLUB_DETAILS.part2" values={club}>
+            {club.name} konnte bislang {club.european_titles} Siege auf europäischer Ebene erreichen.
+          </Trans>
         </Typography>
       </Container>
     </Fragment>
