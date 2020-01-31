@@ -1,3 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c998c490-b5bb-4cf7-aae3-73fde27ae63e/deploy-status)](https://app.netlify.com/sites/all-about-clubs/deploys)
+
+___
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
