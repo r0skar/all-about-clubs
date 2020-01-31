@@ -29,7 +29,7 @@ const initialState: State = {
   sortOrder: SortOrder.NAME_ASC
 }
 
-const Context = createContext({} as { state: State; dispatch: React.Dispatch<Action> })
+const Context = createContext(([] as unknown) as [State, React.Dispatch<Action>])
 
 const Reducer = (state: State, action: Action) => {
   switch (action.type) {
@@ -59,8 +59,8 @@ const Reducer = (state: State, action: Action) => {
 }
 
 export const StoreProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(Reducer, initialState)
-  return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+  const store = useReducer(Reducer, initialState)
+  return <Context.Provider value={store}>{children}</Context.Provider>
 }
 
 export const useStore = () => {

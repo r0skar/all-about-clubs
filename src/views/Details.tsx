@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 export const Details: React.FC = () => {
   const styles = useStyles()
-  const { state } = useStore()
+  const [state] = useStore()
   const { clubIndex } = useParams<RouteParams>()
   const club = state.content[Number(clubIndex)]
 

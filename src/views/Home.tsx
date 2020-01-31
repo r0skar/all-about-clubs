@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 export const Home: React.FC = () => {
   const styles = useStyles()
   const { t } = useTranslation()
-  const { state } = useStore()
+  const [state] = useStore()
   const { push: navigateTo } = useHistory()
 
   return (

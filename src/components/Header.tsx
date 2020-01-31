@@ -13,7 +13,7 @@ import { RouteParams } from '../types'
 
 export const Header: React.FC = () => {
   const { pathname } = useLocation()
-  const { state, dispatch } = useStore()
+  const [state, dispatch] = useStore()
   const { push: navigateTo } = useHistory()
   const match = matchPath<RouteParams>(pathname, { path: DETAILS_ROUTE })
   const { clubIndex = 0 } = match?.params || {}

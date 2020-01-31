@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
 
 export const App: React.FC = () => {
   const styles = useStyles()
-  const { state, dispatch } = useStore()
+  const [state, dispatch] = useStore()
   const { t } = useTranslation()
 
   useEffect(() => {
