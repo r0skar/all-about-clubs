@@ -12,6 +12,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useStore } from '../store'
 
 const useStyles = makeStyles(() => ({
+  clickableRow: {
+    cursor: 'pointer'
+  },
   avatarCell: {
     width: '40px'
   }
@@ -28,7 +31,12 @@ export const Home: React.FC = () => {
       <Table>
         <TableBody>
           {state.content.map((club, index) => (
-            <TableRow key={club.name} hover={true} onClick={() => navigateTo(`/detailsview/${index}`)}>
+            <TableRow
+              className={styles.clickableRow}
+              key={club.name}
+              hover={true}
+              onClick={() => navigateTo(`/detailsview/${index}`)}
+            >
               <TableCell className={styles.avatarCell}>
                 <Avatar alt={club.name} src={club.image} />
               </TableCell>

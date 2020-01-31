@@ -11,13 +11,8 @@ import { Header } from './components/Header'
 
 const useStyles = makeStyles(() => ({
   content: {
-    height: '100vh',
-    position: 'relative',
-    overflowY: 'scroll',
-    overflowX: 'hidden',
-    overscrollBehaviorY: 'none',
-    scrollBehavior: 'smooth',
-    WebkitOverflowScrolling: 'touch'
+    minHeight: '100vh',
+    position: 'relative'
   },
   overlay: {
     backgroundColor: '#fff',
